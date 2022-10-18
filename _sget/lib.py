@@ -16,19 +16,29 @@ def validate_url(x) -> bool:
 
 def determine_url_protocol(url: str) -> str:
     """Gets url's protocol
+    Just a wrapper of urllib.urlparse
+    
+    Args:
+        url (str): The actual url
+
+    Returns:
+        str: the protocol
+    """
+
+    return urlparse(url).scheme
+
+def determine_url_target(url: str) -> str:
+    """Gets url's target
+    Just a wrapper of urllib.urlparse
 
     Args:
         url (str): The actual url
 
     Returns:
         str: the protocol
-        None: if url is malformed, check validate_url for more info
     """
-
-    return urlparse(url).scheme
-
-def determine_url_target(url: str) -> str:
-    return urlparse(url).
+    
+    return urlparse(url).netloc
     
 def download(url, output: TextIO = sys.stdout, encoding="utf8") -> None:
     """Downloads from an url

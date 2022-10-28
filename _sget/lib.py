@@ -1,6 +1,7 @@
 import sys
 from typing import TextIO
 from urllib.parse import urlparse
+import ftplib
 
 import requests
 
@@ -70,6 +71,6 @@ def download_http(url) -> bytes:
         return response.content
     
 def download_ftp(url, credentials = ()) -> bytes:
-    server = ftplib.FTP()
+    server = ftplib.FTP(credentials[0], credentials[1])
     server.connect('192.168.135.101', 5556)
     server.login(credentials[0], credentials[1])
